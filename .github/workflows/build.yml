@@ -1,0 +1,26 @@
+name: Build KAI Firmware
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ARM toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi make wget
+
+      - name: Install ARM SDK
+        run: make arm_sdk_install
+
+      - name: Build KAI firmware
+        run: make kai
+
+      - name: Upload hasil build
+        uses: actions/upload-artifact@v4
+        with:
+          name: VESC_KAI_firmware
+          path: build/kai/*.bin
