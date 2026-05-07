@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install ARM toolchain
         run: |
@@ -20,7 +20,7 @@ jobs:
         run: make kai
 
       - name: Upload hasil build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: VESC_KAI_firmware
           path: build/kai/*.bin
