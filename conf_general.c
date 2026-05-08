@@ -1504,7 +1504,7 @@ static int measure_r_l_imax(float current_min, float current_max,
 	*l *= 1e-6;
 	*ld_lq_diff *= 1e-6;
 	*i_max = sqrtf(max_power_loss / *r / 1.5);
-	utils_truncate_number(i_max, HW_LIM_CURRENT);
+	utils_truncate_number(&i_max, 0.0, HW_LIM_CURRENT);
 
 	mcconf->foc_motor_r = res_old;
 	mc_interface_set_configuration(mcconf);
@@ -1920,7 +1920,7 @@ int conf_general_detect_apply_all_foc(float max_power_loss,
 		mcconf_old_second->l_current_max = r_l_imax_args.i_max;
 		mcconf_old_second->l_current_min = -r_l_imax_args.i_max;
 		abs_max = r_l_imax_args.i_max * 1.5;
-		utils_truncate_number(&abs_max, HW_LIM_CURRENT_ABS);
+		utils_truncate_number(&abs_max, 0.0, HW_LIM_CURRENT_ABS);
 		mcconf_old_second->l_abs_current_max = abs_max;
 		mcconf_old_second->motor_type = MOTOR_TYPE_FOC;
 		mcconf_old_second->foc_motor_r = r_l_imax_args.r;
