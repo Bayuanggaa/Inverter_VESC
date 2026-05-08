@@ -162,6 +162,8 @@ float hw_get_temp(void);
 #define HW_UART_RX_PORT         GPIOC
 #define HW_UART_RX_PIN          11
 #define HW_UART_AF              GPIO_AF_USART3
+#define HW_UART_GPIO_AF         GPIO_AF_USART3 
+#define HW_CAN_GPIO_AF          GPIO_AF_CAN1
 
 // CAN - dari skematik COM: CAN_TX dan CAN_RX ke F405
 // CAN_TX -> PB9 (CAN1_TX), CAN_RX -> PB8 (CAN1_RX)
