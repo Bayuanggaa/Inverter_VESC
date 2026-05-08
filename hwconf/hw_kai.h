@@ -181,5 +181,6 @@ float hw_get_temp(void);
 #define HW_CANTX_PIN            9
 #define HW_CANRX_PORT           GPIOB
 #define HW_CANRX_PIN            8
+#define HW_ENC_TIM_ISR_CH       TIM4_IRQn
 
 #endif /* HW_KAI_H_ */
