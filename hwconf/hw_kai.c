@@ -121,6 +121,10 @@ float hw_get_temp(void) {
 }
 
 
+void hw_try_restore_i2c(void) {
+    // kosong - tidak pakai nunchuk
+}
+
 // =========================================================
 // CATATAN TODO sebelum compile:
 //
