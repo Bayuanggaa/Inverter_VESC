@@ -51,6 +51,10 @@
 #endif
 #endif
 
+#ifndef ADC_V_ZERO
+#define ADC_V_ZERO    (ADC_Value[ADC_IND_EXT] / 2)
+#endif
+
 #ifndef ADC_V_L1
 #define ADC_V_L1    ADC_Value[ADC_IND_EXT]
 #endif
