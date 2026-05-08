@@ -10,6 +10,7 @@
  */
 
 #include "hw.h"
+#include "hw_kai.h"
 #include "ch.h"
 #include "hal.h"
 #include "stm32f4xx_conf.h"
@@ -22,33 +23,28 @@
 // =========================================================
 void hw_init_gpio(void) {
 
-    // --- PWM OUTPUT ke IR2110 ---
-    // TIM1 CH1/2/3 dan CH1N/2N/3N otomatis dikonfigurasi
-    // oleh mcpwm_foc.c - tidak perlu setup manual di sini
+    // EN_GATE - enable gate driver IR2110
+    palSetPadMode(GPIOB, 5, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOB, 5); // HIGH = enable
 
-    // --- EN_GATE (jika dipakai) ---
-    // Kalau EN_GATE disambung ke GPIO untuk enable/disable IR2110
-    // palSetPadMode(GPIOA, x, PAL_MODE_OUTPUT_PUSHPULL);
-    // palSetPad(GPIOA, x); // set HIGH = enable
+    // LED
+    palSetPadMode(LED_RED_GPIO, LED_RED_PIN, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPadMode(LED_GREEN_GPIO, LED_GREEN_PIN, PAL_MODE_OUTPUT_PUSHPULL);
+    LED_RED_OFF();
+    LED_GREEN_OFF();
 
-    // --- FAULT INPUT (Trip_Signal dari sensor board) ---
-    // Setup sebagai input dengan interrupt
-    // palSetPadMode(GPIOC, x, PAL_MODE_INPUT_PULLUP);
+    // HALL SENSOR INPUT
+    palSetPadMode(HW_HALL_ENC_GPIO1, HW_HALL_ENC_PIN1, PAL_MODE_INPUT_PULLUP);
+    palSetPadMode(HW_HALL_ENC_GPIO2, HW_HALL_ENC_PIN2, PAL_MODE_INPUT_PULLUP);
+    palSetPadMode(HW_HALL_ENC_GPIO3, HW_HALL_ENC_PIN3, PAL_MODE_INPUT_PULLUP);
 
-    // --- LED ---
-    // palSetPadMode(LED_RED_GPIO, LED_RED_PIN, PAL_MODE_OUTPUT_PUSHPULL);
-    // palSetPadMode(LED_GREEN_GPIO, LED_GREEN_PIN, PAL_MODE_OUTPUT_PUSHPULL);
-
-    // --- HALL SENSOR INPUT ---
-    palSetPadMode(HW_HALL_ENC_GPIO1, HW_HALL_ENC_PIN1,
-                  PAL_MODE_INPUT_PULLUP);   // HAL_U
-    palSetPadMode(HW_HALL_ENC_GPIO2, HW_HALL_ENC_PIN2,
-                  PAL_MODE_INPUT_PULLUP);   // HAL_V
-    palSetPadMode(HW_HALL_ENC_GPIO3, HW_HALL_ENC_PIN3,
-                  PAL_MODE_INPUT_PULLUP);   // HAL_W
-
-    // --- ADC PIN (otomatis analog mode) ---
-    // VESC firmware handle ini via hw_setup_adc_channels()
+    // UART TX/RX pins
+    palSetPadMode(HW_UART_TX_PORT, HW_UART_TX_PIN,
+                  PAL_MODE_ALTERNATE(GPIO_AF_USART3) |
+                  PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP);
+    palSetPadMode(HW_UART_RX_PORT, HW_UART_RX_PIN,
+                  PAL_MODE_ALTERNATE(GPIO_AF_USART3) |
+                  PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP);
 }
 
 // =========================================================
@@ -111,6 +107,13 @@ void hw_start_i2c(void) {
 
 void hw_stop_i2c(void) {
     // kosong
+}
+
+// =========================================================
+// hw_get_temp() - baca temperatur MOSFET
+// =========================================================
+float hw_get_temp(void) {
+    return NTC_TEMP(ADC_IND_TEMP_MOS);
 }
 
 // =========================================================
