@@ -15,6 +15,8 @@
 #include "hal.h"
 #include "stm32f4xx_conf.h"
 #include "utils.h"
+#include "mcpwm_foc.h"    
+#include "mc_interface.h"  
 #include <math.h>
 
 // =========================================================
@@ -113,8 +115,11 @@ void hw_stop_i2c(void) {
 // hw_get_temp() - baca temperatur MOSFET
 // =========================================================
 float hw_get_temp(void) {
-    return NTC_TEMP(ADC_IND_TEMP_MOS);
+    // Return dummy value dulu
+    // Nanti bisa diimplementasikan setelah ADC jalan
+    return 25.0;
 }
+
 
 // =========================================================
 // CATATAN TODO sebelum compile:
