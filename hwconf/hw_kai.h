@@ -12,10 +12,6 @@
 #ifndef HW_KAI_H_
 #define HW_KAI_H_
 
-#ifdef ADC_V_L4
-#undef ADC_V_L4
-#endif
-
 #define HW_NAME                 "KAI_INVERTER_72V"
 
 // TIDAK PAKAI DRV - jangan uncomment
@@ -41,9 +37,6 @@
 // SESUAIKAN CURRENT_AMP_GAIN setelah ukur gain aktual!
 #define CURRENT_SHUNT_RES       0.018
 #define CURRENT_AMP_GAIN        10.0
-#define HW_LIM_CURRENT          100.0
-#define HW_LIM_CURRENT_IN       100.0
-#define HW_LIM_CURRENT_ABS      150.0
 #define MCCONF_L_MAX_ABS_CURRENT 150.0
 #define MCCONF_L_CURRENT_MAX    50.0
 #define MCCONF_L_CURRENT_MIN    -50.0
@@ -188,5 +181,6 @@ float hw_get_temp(void);
 #define HW_ENC_TIM_ISR_CH       TIM4_IRQn
 #define HW_ENC_EXTI_PORTSRC     EXTI_PortSourceGPIOC
 #define HW_ENC_EXTI_PINSRC      EXTI_PinSource8
+
 
 #endif /* HW_KAI_H_ */
