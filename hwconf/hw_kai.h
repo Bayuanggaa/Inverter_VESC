@@ -12,6 +12,10 @@
 #ifndef HW_KAI_H_
 #define HW_KAI_H_
 
+#ifdef ADC_V_L4
+#undef ADC_V_L4
+#endif
+
 #define HW_NAME                 "KAI_INVERTER_72V"
 
 // TIDAK PAKAI DRV - jangan uncomment
@@ -82,7 +86,7 @@
 
 // PWM switching frequency dan dead time
 #define HW_DEAD_TIME_NSEC       2500.0
-#define MCCONF_FOC_F_SW         20000.0
+#define MCCONF_FOC_F_ZV    20000.0
 
 // Hall sensor pins
 // HAL_U->PC6, HAL_V->PC7, HAL_W->PC8
