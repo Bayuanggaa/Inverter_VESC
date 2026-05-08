@@ -1898,7 +1898,7 @@ int conf_general_detect_apply_all_foc(float max_power_loss,
 		mcconf_old->l_current_max = i_max;
 		mcconf_old->l_current_min = -i_max;
 		float abs_max = i_max * 1.5;
-		if (abs_max > HW_LIM_CURRENT_ABS) abs_max = HW_LIM_CURRENT_ABS;
+		utils_truncate_number(&abs_max, 0.0, 150.0);
 		if (abs_max < 0.0) abs_max = 0.0;
 		mcconf_old->l_abs_current_max = abs_max;		
 		mcconf_old->motor_type = MOTOR_TYPE_FOC;
