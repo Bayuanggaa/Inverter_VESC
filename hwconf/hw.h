@@ -75,6 +75,10 @@
 #define ADC_IND_SENS3    ADC_IND_EXT
 #endif
 
+#ifndef HW_ICU_TIM_CLK_EN
+#define HW_ICU_TIM_CLK_EN()    RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE)
+#endif
+
 // Possible HW properties.
 
 /*
