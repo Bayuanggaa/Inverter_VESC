@@ -151,4 +151,25 @@ void hw_start_i2c(void);
 void hw_stop_i2c(void);
 float hw_get_temp(void);
 
+// =========================================================
+// UART - USART3 (TX=PC10, RX=PC11)
+// Dari skematik MCU F405: TX di pin64=PC10, RX di pin66=PC11
+// =========================================================
+#define HW_UART_DEV             SD3
+#define HW_UART_BAUDRATE        115200
+#define HW_UART_TX_PORT         GPIOC
+#define HW_UART_TX_PIN          10
+#define HW_UART_RX_PORT         GPIOC
+#define HW_UART_RX_PIN          11
+#define HW_UART_AF              GPIO_AF_USART3
+
+// CAN - dari skematik COM: CAN_TX dan CAN_RX ke F405
+// CAN_TX -> PB9 (CAN1_TX), CAN_RX -> PB8 (CAN1_RX)
+#define HW_CAN_DEV              CAND1
+#define HW_CAN_AF               GPIO_AF_CAN1
+#define HW_CANTX_PORT           GPIOB
+#define HW_CANTX_PIN            9
+#define HW_CANRX_PORT           GPIOB
+#define HW_CANRX_PIN            8
+
 #endif /* HW_KAI_H_ */
