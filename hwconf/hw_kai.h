@@ -155,6 +155,14 @@ float hw_get_temp(void);
 // UART - USART3 (TX=PC10, RX=PC11)
 // Dari skematik MCU F405: TX di pin64=PC10, RX di pin66=PC11
 // =========================================================
+// I2C - SCL=PB10, SDA=PB11 (dari skematik MCU F405)
+#define HW_I2C_DEV              I2CD2
+#define HW_I2C_GPIO_AF          GPIO_AF_I2C2
+#define HW_I2C_SCL_PORT         GPIOB
+#define HW_I2C_SCL_PIN          10
+#define HW_I2C_SDA_PORT         GPIOB
+#define HW_I2C_SDA_PIN          11
+
 #define HW_UART_DEV             SD3
 #define HW_UART_BAUDRATE        115200
 #define HW_UART_TX_PORT         GPIOC
