@@ -728,4 +728,23 @@ void hw_try_restore_i2c(void);
 uint8_t hw_id_from_uuid(void);
 uint8_t hw_id_from_pins(void);
 
+// ADC voltage sensing untuk back-EMF / phase voltage
+// SENS1, SENS2, SENS3 dari skematik sensor
+#define ADC_V_L1                ADC_Value[ADC_IND_EXT]
+#define ADC_V_L2                ADC_Value[ADC_IND_EXT]
+#define ADC_V_L3                ADC_Value[ADC_IND_EXT]
+#define ADC_V_L4                ADC_Value[ADC_IND_EXT]
+
+// HW_LIM_CURRENT harus berupa range min,max (bukan single value)
+// Ganti define yang lama
+#undef HW_LIM_CURRENT
+#undef HW_LIM_CURRENT_IN
+#undef HW_LIM_CURRENT_ABS
+#define HW_LIM_CURRENT          -100.0, 100.0
+#define HW_LIM_CURRENT_IN       -100.0, 100.0
+#define HW_LIM_CURRENT_ABS      0.0, 150.0
+
+// ICU device
+#define HW_ICU_DEV              ICUD9
+
 #endif /* HW_H_ */
