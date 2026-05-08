@@ -51,6 +51,16 @@
 #endif
 #endif
 
+#ifndef ADC_V_L1
+#define ADC_V_L1    ADC_Value[ADC_IND_EXT]
+#endif
+#ifndef ADC_V_L2
+#define ADC_V_L2    ADC_Value[ADC_IND_EXT]
+#endif
+#ifndef ADC_V_L3
+#define ADC_V_L3    ADC_Value[ADC_IND_EXT]
+#endif
+
 // Possible HW properties.
 
 /*
